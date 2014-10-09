@@ -10,7 +10,7 @@
     <option name="pathToConfigFileJava" value="D:/Install/intellIJ/JavaCodeFormatting.xml" />
     <option name="selectedJavaProfile" value="Synergy Java Conventions" />
   </component>
-  <component name="IdProvider" IDEtalkID="230485F7C06D730F5BF9D6549973B7BF" />
+  <component name="IdProvider" IDEtalkID="E7F3FC23FB8159FA96BB14B625D6D361" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
@@ -18,7 +18,7 @@
     <states>
       <state key="ProjectJDKs.UI">
         <settings>
-          <last-edited>1.7</last-edited>
+          <last-edited>1.5</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
