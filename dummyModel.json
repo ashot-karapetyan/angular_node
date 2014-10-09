@@ -1,0 +1,53 @@
+{
+  "type": "sisNgRow",
+  "prop": {
+    "columns": 12,
+    "classPrefix": "col-xs"
+  },
+  "items": [
+    {
+      "type": "sisNgInput",
+      "prop": {
+        "value": "value",
+        "placeholder": "pls enter smth"
+      }
+    },
+    {
+      "type": "sisNgInput",
+      "prop": {
+        "value": "value",
+        "placeholder": "pls enter smth"
+      }
+    },
+    {
+      "type": "sisNgInput",
+      "prop": {
+        "value": "value",
+        "placeholder": "pls enter smth"
+      }
+    },
+    {
+      "type": "sisNgRow",
+      "prop": {
+        "columns": 12,
+        "classPrefix": "col-xs"
+      },
+      "items": [
+        {
+          "type": "sisNgInput",
+          "prop": {
+            "value": "value",
+            "placeholder": "pls enter smth"
+          }
+        }
+      ]
+    },
+    {
+      "type": "sisNgInput",
+      "prop": {
+        "value": "value",
+        "placeholder": "pls enter smth"
+      }
+    }
+  ]
+}

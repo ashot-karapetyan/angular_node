@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="EclipseCodeFormatter">
+    <option name="defaultSettings" value="true" />
+    <option name="formatter" value="ECLIPSE" />
+    <option name="id" value="1393599721027" />
+    <option name="importOrderConfigFilePath" value="D:/Install/intellIJ/JavaImportOrdering.importorder" />
+    <option name="importOrderFromFile" value="true" />
+    <option name="name" value="Synergy Java Conventions" />
+    <option name="pathToConfigFileJava" value="D:/Install/intellIJ/JavaCodeFormatting.xml" />
+    <option name="selectedJavaProfile" value="Synergy Java Conventions" />
+  </component>
+  <component name="IdProvider" IDEtalkID="230485F7C06D730F5BF9D6549973B7BF" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.7</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
+
