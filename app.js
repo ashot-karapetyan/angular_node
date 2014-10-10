@@ -77,57 +77,57 @@ app.use(function(err, req, res, next) {
 //server.listen(port);
 
 
-
-/**
- * Modifies attribute's value in order to use in concateing of the markup strings
- */
-escapeAttributeValue = function(value){
-	var result = typeof value==="object" ? JSON.stringify(value) : (''+value);
-
-	return result.replace(/&/g, '&amp;') /* This MUST be the 1st replacement. */
-		.replace(/'/g, '&apos;') /* The 4 other predefined entities, required. */
-		.replace(/"/g, '&quot;')
-		.replace(/</g, '&lt;')
-		.replace(/>/g, '&gt;');
-
-},
-
-/**
- * Converts camelCase to snake-case
- */
-getSnakeCaseName = function(name, separator) {
-	var SNAKE_CASE_REGEXP = /[A-Z]/g;
-	separator = separator || '-';
-	return name.replace(SNAKE_CASE_REGEXP, function(letter, pos) {
-		return (pos ? separator : '') + letter.toLowerCase();
-	});
-},
-
-/**
- * Returns [key=value] items joined with space
- */
-getPropertiesAsAttributes  = function( object ){
-	var parts = [];
-	for(var key in object){
-		parts.push(getSnakeCaseName(key)+'="'+escapeAttributeValue(object[key])+'"');
-	}
-	return parts.join(' ');
-},
-/**
- * Builds view's markup from the model
- */
-createView = function(model){
-	var tpl = '';
-	var self = this;
-	var tagName = getSnakeCaseName(model.type);
-	tpl += '<'+tagName+' '+getPropertiesAsAttributes(model.prop)+' >';
-	if(model.items){
-		tpl += model.items.map(function(item){
-			return self.createView(item);
-		}).join('');
-	}
-	tpl += '</'+tagName+'>';
-	return tpl;
-};
+//
+///**
+// * Modifies attribute's value in order to use in concateing of the markup strings
+// */
+//escapeAttributeValue = function(value){
+//	var result = typeof value==="object" ? JSON.stringify(value) : (''+value);
+//
+//	return result.replace(/&/g, '&amp;') /* This MUST be the 1st replacement. */
+//		.replace(/'/g, '&apos;') /* The 4 other predefined entities, required. */
+//		.replace(/"/g, '&quot;')
+//		.replace(/</g, '&lt;')
+//		.replace(/>/g, '&gt;');
+//
+//},
+//
+///**
+// * Converts camelCase to snake-case
+// */
+//getSnakeCaseName = function(name, separator) {
+//	var SNAKE_CASE_REGEXP = /[A-Z]/g;
+//	separator = separator || '-';
+//	return name.replace(SNAKE_CASE_REGEXP, function(letter, pos) {
+//		return (pos ? separator : '') + letter.toLowerCase();
+//	});
+//},
+//
+///**
+// * Returns [key=value] items joined with space
+// */
+//getPropertiesAsAttributes  = function( object ){
+//	var parts = [];
+//	for(var key in object){
+//		parts.push(getSnakeCaseName(key)+'="'+escapeAttributeValue(object[key])+'"');
+//	}
+//	return parts.join(' ');
+//},
+///**
+// * Builds view's markup from the model
+// */
+//createView = function(model){
+//	var tpl = '';
+//	var self = this;
+//	var tagName = getSnakeCaseName(model.type);
+//	tpl += '<'+tagName+' '+getPropertiesAsAttributes(model.prop)+' >';
+//	if(model.items){
+//		tpl += model.items.map(function(item){
+//			return self.createView(item);
+//		}).join('');
+//	}
+//	tpl += '</'+tagName+'>';
+//	return tpl;
+//};
 
 module.exports = app;
