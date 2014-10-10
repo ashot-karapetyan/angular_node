@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
+var routes = require('./routes/index-angular');
 var users = require('./routes/users');
 var http = require("http");
 var fs = require("fs");
@@ -34,6 +34,11 @@ app.use(function(req, res, next) {
     next(err);
 });
 
+
+var server = app.listen(8080, function() {
+	console.log('Listening on port %d', server.address().port);
+});
+
 // error handlers
 
 // development error handler
@@ -60,14 +65,16 @@ app.use(function(err, req, res, next) {
 
 
 
-var port = 8080;
-var server = http.createServer(function(req, res){
 
-	res.writeHead(200, { 'content-type': 'text/html' });
-	var model = JSON.parse(fs.readFileSync("dummyModel.json").toString());
-	res.end(createView(model));
-});
-server.listen(port);
+
+//var port = 8080;
+//var server = http.createServer(function(req, res){
+//
+//	res.writeHead(200, { 'content-type': 'text/html' });
+//	var model = JSON.parse(fs.readFileSync("dummyModel.json").toString());
+//	res.end(createView(model));
+//});
+//server.listen(port);
 
 
 

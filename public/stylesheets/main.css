@@ -1,0 +1,180 @@
+/* Space out content a bit */
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Custom page header */
+.header {
+  border-bottom: 1px solid #e5e5e5;
+}
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+  padding-bottom: 19px;
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+
+/* Customize container */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 970px;
+  }
+}
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+/** BEGIN - CUSTOM STYLES */
+.page{
+    width:100%;
+    height:100%;
+    min-height:500px;
+    background-color: #fff;
+    border: 1px solid #000;
+}
+
+.tab2-cont1{
+    background-color: #ccc;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+.tab2-cont2{
+    background-color: #ddd;
+    padding: 15px;
+}
+.tabset1 .active a{
+    font-weight: bold;
+}
+
+.tabset1 ul > li{
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 4px 8px;
+    border-bottom: 1px solid white;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+
+}
+.tabset1 ul {
+    display: block;
+    list-style: none;
+}
+.tabset1 .tabset-content{
+    display: block;
+    min-height: 200px;
+    background-color:#eee;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.component-drag-hover {
+    border: 3px dashed #0f0;
+}
+.component-selected {
+    border: 3px solid #700 !important;
+}
+.toolbar li {
+    display:inline-block;
+    list-style:none;
+    border: 1px solid #555;
+    background-color: #eee;
+    margin-right: 2px;
+    padding: 0px 5px;
+}
+
+.cont {
+    width:100px;
+    height:100px;
+    background-color: #ccc;
+}
+.designer-board .container-fluid{
+    min-height: 10px;
+    margin: 10px 10px;
+    background-color: #aaa;
+}
+.designer-board .row{
+    min-height: 10px;
+    margin: 10px 10px;
+    background-color: #555;
+}
+.designer-board .col-xs-12{
+    min-height: 10px;
+    margin: 10px 10px;
+    background-color: #ccc;
+}
+
+.designer-board2 .row{
+    min-height: 10px;
+    margin: 10px 10px;
+    background-color: #f55;
+}
+.designer-board2 .col-xs-12{
+    min-height: 10px;
+    margin: 10px 10px;
+    background-color: #fcc;
+}
+
+.designer-board2{
+    min-height: 50px;
+    border: 1px solid #f00;
+}
+
+.designer-board{
+    min-height: 50px;
+    border: 1px solid black;
+}
+
+.sis-input{
+    min-width:100px;
+    min-height: 15px;
+    display: inline-block;
+    border: 1px solid #000;
+    background-color: #ccc;
+}
+
+.sis-inspector{
+    padding: 5px;
+    border: 1px solid #ccc;
+    background-color: #eee;
+    border-radius: 5px;
+    min-height: 200px;
+}
+/** END - CUSTOM STYLES */
+
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  /* Remove the padding we set earlier */
+  .header,
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+}
