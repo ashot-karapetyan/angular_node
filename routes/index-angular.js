@@ -7,78 +7,76 @@ var router = express.Router();
 router.get('/', function(req, res) {
 
 	var model = JSON.parse(fs.readFileSync("dummyModel.json").toString());
-	var jadeTemplate = createJadeTemplate(model);
-	var options = { title: 'Express', deControls:jadeTemplate};
-	var fn = jade.compileFile(fs.realpathSync('views/index-angular.jade'));
-	var html = fn(options);
+    var jadeTemplate = createJadeTemplate([model], "");
+
+    var htmlTemplateFn  = jade.compile(jadeTemplate);
+    var htmlTemplate = htmlTemplateFn(options);
+	var options = { title: 'Express', deControls:htmlTemplate};
     res.render('index-angular', options);
 
-
 });
+
 
 /**
  * Converts camelCase to snake-case
  */
-getSnakeCaseName = function(name, separator) {
-	var SNAKE_CASE_REGEXP = /[A-Z]/g;
-	separator = separator || '-';
-	return name.replace(SNAKE_CASE_REGEXP, function(letter, pos) {
-		return (pos ? separator : '') + letter.toLowerCase();
-	});
-};
+function getSnakeCaseName(name, separator) {
+    var SNAKE_CASE_REGEXP = /[A-Z]/g;
+    separator = separator || '-';
+    return name.replace(SNAKE_CASE_REGEXP, function(letter, pos) {
+        return (pos ? separator : '') + letter.toLowerCase();
+    });
+}
+/**
+ * Modifies attribute's value in order to use in concateing of the markup strings
+ */
+function escapeAttributeValue(value){
+    var result = typeof value==="object" ? JSON.stringify(value) : (''+value);
+
+    return result.replace(/&/g, '&amp;') /* This MUST be the 1st replacement. */
+        .replace(/'/g, '&apos;') /* The 4 other predefined entities, required. */
+        .replace(/"/g, '&quot;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+
+}
+
 
 /**
  * Returns [key=value] items joined with space
  */
-getPropertiesAsAttributes  = function( object ){
-	var parts = [];
-	for(var key in object){
-		parts.push(getSnakeCaseName(key)+'="'+escapeAttributeValue(object[key])+'"');
-	}
-	return parts.join(' ');
-};
+function getPropertiesAsAttributes( object ){
+    var parts = [];
+    for(var key in object){
+        parts.push(getSnakeCaseName(key)+ "='" +object[key]+"'");
+    }
+    return parts.join(' ');
+}
 
 /**
  * Builds view's markup from the model
  */
-createJadeTemplate = function(model){
-	var controls = [model];
-	var template = '';
+function createJadeTemplate(controls, intend){
+    var template = '';
+    controls.forEach(function(control){
+        var tagName = getSnakeCaseName(control.type);
+        template += intend;
+        template += convertTagToJadeFormat(tagName, getPropertiesAsAttributes(control.prop));
+        template += '\n';
+        if(control.items){
+            template += createJadeTemplate(control.items, intend + "\t");
+        }
+    });
+    return template;
+}
 
-	while(controls.length >0){
-		var item = controls.pop();
-		var tagName = getSnakeCaseName(item.type);
-		template += convertTagToJadeFormat(tagName, getPropertiesAsAttributes(item.prop));
-		if(item.items){
-			controls.concat(item.items);
-		}
-	}
-	return template;
-};
-
-convertTagToJadeFormat = function(tagName, properties){
-	//sis-ng-row(columns='12' class-prefix='col-xs')
-	var result = tagName + '(';
-	for(var property in properties){
-		result += property;
-		result += ' ';
-	}
-	return  result+=')';
-};
-
-/**
- * Modifies attribute's value in order to use in concateing of the markup strings
- */
-escapeAttributeValue = function(value){
-	var result = typeof value==="object" ? JSON.stringify(value) : (''+value);
-
-	return result.replace(/&/g, '&amp;') /* This MUST be the 1st replacement. */
-		.replace(/'/g, '&apos;') /* The 4 other predefined entities, required. */
-		.replace(/"/g, '&quot;')
-		.replace(/</g, '&lt;')
-		.replace(/>/g, '&gt;');
-
-};
+function convertTagToJadeFormat(tagName, properties){
+    //sis-ng-row(columns='12' class-prefix='col-xs')
+    var result = tagName + '(';
+    result += properties;
+    result += ')';
+    return  result;
+}
 
 
 module.exports = router;

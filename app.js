@@ -6,7 +6,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index-angular');
-var users = require('./routes/users');
 var http = require("http");
 var fs = require("fs");
 
@@ -23,23 +22,26 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.set('env', 'development');
 
 app.use('/', routes);
-app.use('/users', users);
+
+var server = app.listen(8080, function() {
+    console.log('Listening on port %d', server.address().port);
+});
+
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+    res.render('404error', {title:'404', url: req.url });
 });
 
 
-var server = app.listen(8080, function() {
-	console.log('Listening on port %d', server.address().port);
-});
-
-// error handlers
+    /*  error handlers   */
 
 // development error handler
 // will print stacktrace
@@ -62,72 +64,5 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
-
-
-
-
-
-//var port = 8080;
-//var server = http.createServer(function(req, res){
-//
-//	res.writeHead(200, { 'content-type': 'text/html' });
-//	var model = JSON.parse(fs.readFileSync("dummyModel.json").toString());
-//	res.end(createView(model));
-//});
-//server.listen(port);
-
-
-//
-///**
-// * Modifies attribute's value in order to use in concateing of the markup strings
-// */
-//escapeAttributeValue = function(value){
-//	var result = typeof value==="object" ? JSON.stringify(value) : (''+value);
-//
-//	return result.replace(/&/g, '&amp;') /* This MUST be the 1st replacement. */
-//		.replace(/'/g, '&apos;') /* The 4 other predefined entities, required. */
-//		.replace(/"/g, '&quot;')
-//		.replace(/</g, '&lt;')
-//		.replace(/>/g, '&gt;');
-//
-//},
-//
-///**
-// * Converts camelCase to snake-case
-// */
-//getSnakeCaseName = function(name, separator) {
-//	var SNAKE_CASE_REGEXP = /[A-Z]/g;
-//	separator = separator || '-';
-//	return name.replace(SNAKE_CASE_REGEXP, function(letter, pos) {
-//		return (pos ? separator : '') + letter.toLowerCase();
-//	});
-//},
-//
-///**
-// * Returns [key=value] items joined with space
-// */
-//getPropertiesAsAttributes  = function( object ){
-//	var parts = [];
-//	for(var key in object){
-//		parts.push(getSnakeCaseName(key)+'="'+escapeAttributeValue(object[key])+'"');
-//	}
-//	return parts.join(' ');
-//},
-///**
-// * Builds view's markup from the model
-// */
-//createView = function(model){
-//	var tpl = '';
-//	var self = this;
-//	var tagName = getSnakeCaseName(model.type);
-//	tpl += '<'+tagName+' '+getPropertiesAsAttributes(model.prop)+' >';
-//	if(model.items){
-//		tpl += model.items.map(function(item){
-//			return self.createView(item);
-//		}).join('');
-//	}
-//	tpl += '</'+tagName+'>';
-//	return tpl;
-//};
 
 module.exports = app;
