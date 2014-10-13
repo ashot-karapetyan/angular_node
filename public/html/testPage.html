@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<script src="/javascripts/bower_components/jquery/dist/jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="/javascripts/bower_components/bootstrap/dist/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+<script>
+
+    $(document).ready(function(){
+
+        var input = $('<input type="hidden" name="model" val/>');
+        var model = {
+            "type": "sisNgRow",
+            "prop": {
+                "columns": 12,
+                "classPrefix": "col-xs"
+            },
+            "items": [
+                {
+                    "type": "sisNgInput",
+                    "prop": {
+                        "value": "value",
+                        "placeholder": "pls enter smth"
+                    }
+                },
+                {
+                    "type": "sisNgInput",
+                    "prop": {
+                        "value": "value",
+                        "placeholder": "pls enter smth"
+                    }
+                },
+                {
+                    "type": "sisNgInput",
+                    "prop": {
+                        "value": "value",
+                        "placeholder": "pls enter smth"
+                    }
+                },
+                {
+                    "type": "sisNgRow",
+                    "prop": {
+                        "columns": 12,
+                        "classPrefix": "col-xs"
+                    },
+                    "items": [
+                        {
+                            "type": "sisNgInput",
+                            "prop": {
+                                "value": "value",
+                                "placeholder": "pls enter smth"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "sisNgInput",
+                    "prop": {
+                        "value": "value",
+                        "placeholder": "pls enter smth"
+                    }
+                }
+            ]
+        };
+
+        input.val(JSON.stringify(model));
+        var form = $('<form></form>');
+        form.prop("method", 'post');
+        form.prop("target", '_blank');
+        form.append(input);
+        $('#allPage').click(function(){
+            form.prop("action", '/getPage');
+            form.submit();
+        });
+        $('#directivesCode').click(function(){
+            form.prop("action", '/getSnippet');
+            form.submit();
+        });
+
+    });
+</script>
+<body>
+<button id="allPage" type="button" class="btn  btn-primary">View </button>
+<button id="directivesCode" type="button" class="btn  btn-primary">Directives code</button>
+</body>
+</html>

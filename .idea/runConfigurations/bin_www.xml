@@ -3,7 +3,7 @@
     <envs>
       <env name="DEBUG" value="autoDE-node1" />
     </envs>
-    <browser url="http://localhost:8080/" />
+    <browser url="http://localhost:8080/index" />
     <RunnerSettings RunnerId="NodeJS.debug" />
     <RunnerSettings RunnerId="NodeJS.run" />
     <ConfigurationWrapper RunnerId="NodeJS.debug" />

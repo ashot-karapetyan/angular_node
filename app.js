@@ -5,7 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index-angular');
+var router = require('./routes/angularResponse');
+var testPage = require('./routes/testPage');
 var http = require("http");
 var fs = require("fs");
 
@@ -24,7 +25,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('env', 'development');
 
-app.use('/', routes);
+app.use('/index', testPage);
+app.use('/', router);
 
 var server = app.listen(8080, function() {
     console.log('Listening on port %d', server.address().port);

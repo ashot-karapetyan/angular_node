@@ -3,19 +3,31 @@ var jade = require('jade');
 var fs = require('fs');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res) {
+router.post('/getPage', function(req, res) {
 
-	var model = JSON.parse(fs.readFileSync("dummyModel.json").toString());
+//	var model = JSON.parse(fs.readFileSync("dummyModel.json").toString());
+    var model = JSON.parse(req.body.model);
     var jadeTemplate = createJadeTemplate([model], "");
 
+
     var htmlTemplateFn  = jade.compile(jadeTemplate);
-    var htmlTemplate = htmlTemplateFn(options);
+    var htmlTemplate = htmlTemplateFn({});
 	var options = { title: 'Express', deControls:htmlTemplate};
-    res.render('index-angular', options);
+    res.render('angularResponse', options);
 
 });
 
+
+router.post('/getSnippet', function(req, res) {
+//    var model = JSON.parse(fs.readFileSync("dummyModel.json").toString());
+    var model = JSON.parse(req.body.model);
+
+    var jadeTemplate = createJadeTemplate([model], "");
+    var htmlTemplateFn  = jade.compile(jadeTemplate);
+    var htmlTemplate = htmlTemplateFn({});
+    res.end(htmlTemplate);
+
+});
 
 /**
  * Converts camelCase to snake-case
